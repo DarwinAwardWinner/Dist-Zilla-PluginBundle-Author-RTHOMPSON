@@ -36,6 +36,7 @@ sub configure {
         ['CompileTests' => {
             skip => 'Test$',
         }],
+        'KwaliteeTests',
 
         # Prerequisite checks
         'ReportVersions',
