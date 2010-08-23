@@ -2,3 +2,4 @@ syntax:glob
 
 .build/
 Dist-Zilla-PluginBundle-RCT-*
+.build-timestamp
