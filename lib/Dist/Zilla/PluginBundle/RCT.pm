@@ -42,6 +42,9 @@ sub configure {
         'ReportVersions',
         'MinimumPerl',
         'AutoPrereq',
+
+        # Release checks
+        'CheckChangesHasContent',
     );
 }
 1; # Magic true value required at end of module
