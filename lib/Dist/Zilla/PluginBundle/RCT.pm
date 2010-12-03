@@ -18,7 +18,7 @@ sub configure {
     $self->add_bundle('Filter' => {
         bundle => '@Basic',
         # Disable the Readme plugin so we can use ReadmeFromPod.
-        remove => 'Readme',
+        remove => [ 'Readme', ],
     });
     $self->add_plugins(
         # Mods
