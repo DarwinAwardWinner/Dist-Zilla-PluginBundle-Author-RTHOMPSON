@@ -15,7 +15,11 @@ with 'Dist::Zilla::Role::PluginBundle::Easy';
 
 sub configure {
     my $self = shift;
-    $self->add_bundle('Basic');
+    $self->add_bundle('Filter' => {
+        bundle => '@Basic',
+        # Disable the Readme plugin so we can use ReadmeFromPod.
+        remove => 'Readme',
+    });
     $self->add_plugins(
         # Mods
         'PkgVersion',
@@ -25,6 +29,7 @@ sub configure {
         'InstallGuide',
         'ReadmeFromPod',
         'ReadmeMarkdownFromPod',
+        'CopyReadmeFromBuild',
 
         # Tests
         'CriticTests',
