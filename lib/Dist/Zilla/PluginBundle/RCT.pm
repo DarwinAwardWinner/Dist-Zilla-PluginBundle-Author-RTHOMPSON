@@ -41,7 +41,7 @@ sub configure {
         # Prerequisite checks
         'ReportVersions',
         'MinimumPerl',
-        'AutoPrereq',
+        'AutoPrereqs',
 
         # Release checks
         'CheckChangesHasContent',
