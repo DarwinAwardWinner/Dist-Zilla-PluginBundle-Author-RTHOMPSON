@@ -1,78 +1,19 @@
-use strict;
-use warnings;
-use v5.10;
-use utf8;
-
-package Dist::Zilla::PluginBundle::RCT;
-# ABSTRACT: RCT's Dist::Zilla Configuration
-
-use Moose;
-with 'Dist::Zilla::Role::PluginBundle::Easy';
-
-=for Pod::Coverage  configure
-
-=cut
-
-sub configure {
-    my $self = shift;
-    $self->add_bundle('Filter' => {
-        -bundle => '@Basic',
-        # Disable the Readme plugin so we can use ReadmeFromPod.
-        -remove => [ 'Readme', ],
-    });
-    $self->add_plugins(
-        # Mods
-        'PkgVersion',
-        'PodWeaver',
-
-        # Generated Docs
-        'InstallGuide',
-        'ReadmeFromPod',
-        'ReadmeMarkdownFromPod',
-        ['CopyFilesFromBuild' => {
-            file => 'README.mkdn',
-        }],
-
-        # Tests
-        'CriticTests',
-        'PodTests',
-        'HasVersionTests',
-        'PortabilityTests',
-        'SynopsisTests',
-        'UnusedVarsTests',
-        ['CompileTests' => {
-            skip => 'Test$',
-        }],
-        'KwaliteeTests',
-
-        # Prerequisite checks
-        'ReportVersions',
-        'MinimumPerl',
-        'AutoPrereqs',
-
-        # Release checks
-        'CheckChangesHasContent',
-    );
-}
-1; # Magic true value required at end of module
-__END__
-
-=head1 SYNOPSIS
+# SYNOPSIS
 
 In dist.ini:
 
     [@RCT]
 
-=head1 DESCRIPTION
+# DESCRIPTION
 
 See the code. It lists all the plugins that it loads quite clearly.
 
-=head1 BUGS AND LIMITATIONS
+# BUGS AND LIMITATIONS
 
 Please report any bugs or feature requests to
-C<rct+perlbug@thompsonclan.org>.
+`rct+perlbug@thompsonclan.org`.
 
-=head1 DISCLAIMER OF WARRANTY
+# DISCLAIMER OF WARRANTY
 
 BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
 FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
