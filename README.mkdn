@@ -1,3 +1,11 @@
+# NAME
+
+Dist::Zilla::PluginBundle::RCT - RCT's Dist::Zilla Configuration
+
+# VERSION
+
+version 0.4.0
+
 # SYNOPSIS
 
 In dist.ini:
@@ -35,3 +43,14 @@ RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
 FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
 SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGES.
+
+# AUTHOR
+
+Ryan C. Thompson <rct@thompsonclan.org>
+
+# COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Ryan C. Thompson.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
