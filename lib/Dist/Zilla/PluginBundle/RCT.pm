@@ -15,12 +15,18 @@ with 'Dist::Zilla::Role::PluginBundle::Easy';
 
 sub configure {
     my $self = shift;
-    $self->add_bundle('Filter' => {
-        -bundle => '@Basic',
-        # Disable the Readme plugin so we can use ReadmeFromPod.
-        -remove => [ 'Readme', ],
-    });
     $self->add_plugins(
+        # @Basic
+        'GatherDir',
+        'PruneCruft',
+        'ManifestSkip',
+        'MetaYAML',
+        'License',
+        'ExecDir',
+        'ShareDir',
+        'MakeMaker',
+        'Manifest',
+
         # Mods
         'PkgVersion',
         'PodWeaver',
@@ -30,8 +36,11 @@ sub configure {
         'ReadmeFromPod',
         'ReadmeMarkdownFromPod',
         ['CopyFilesFromBuild' => {
-            file => 'README.mkdn',
+            # This is for GitHub and similar things the expect a
+            # README under version control.
+            file => [ 'README.mkdn' ],
         }],
+        'GithubMeta',
 
         # Tests
         'CriticTests',
@@ -44,6 +53,7 @@ sub configure {
             skip => 'Test$',
         }],
         'KwaliteeTests',
+        'ExtraTests',
 
         # Prerequisite checks
         'ReportVersions',
@@ -52,6 +62,16 @@ sub configure {
 
         # Release checks
         'CheckChangesHasContent',
+
+        # Release
+        'NextRelease',
+        'TestRelease',
+        'ConfirmRelease',
+        'ArchiveRelease',
+
+        # 'FakeRelease',
+        'UploadToCPAN',
+
     );
 }
 1; # Magic true value required at end of module
@@ -68,6 +88,8 @@ In dist.ini:
 See the code. It lists all the plugins that it loads quite clearly.
 
 =head1 BUGS AND LIMITATIONS
+
+This module should be more configurable. Suggestions welcome.
 
 Please report any bugs or feature requests to
 C<rct+perlbug@thompsonclan.org>.

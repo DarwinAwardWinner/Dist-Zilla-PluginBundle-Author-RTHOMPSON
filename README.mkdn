@@ -4,7 +4,7 @@ Dist::Zilla::PluginBundle::RCT - RCT's Dist::Zilla Configuration
 
 # VERSION
 
-version 0.4.0
+version 0.103420
 
 # SYNOPSIS
 
@@ -17,6 +17,8 @@ In dist.ini:
 See the code. It lists all the plugins that it loads quite clearly.
 
 # BUGS AND LIMITATIONS
+
+This module should be more configurable. Suggestions welcome.
 
 Please report any bugs or feature requests to
 `rct+perlbug@thompsonclan.org`.
