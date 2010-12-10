@@ -53,9 +53,10 @@ my @options = qw( -remove version version_major synopsis_is_perl_code copy_file
 # Returns true for strings of 'true', 'yes', or positive numbers,
 # false otherwise.
 sub _parse_bool {
-    return 1 if ($_ > 1 or m{true|yes}i);
+    return 1 if $_[0] =~ m{true|yes|1}i;
+    return if $_[0] =~ m{false|no|0}i;
+    die "Invalid boolean value $_[0]. Valid values are true/false yes/no 1/0";
 }
-
 
 sub configure {
     my $self = shift;
@@ -77,7 +78,7 @@ sub configure {
         # suchlike.
         copy_file => [ 'README.pod' ],
     };
-    my %args = (%$defaults %{$self->payload});
+    my %args = (%$defaults, %{$self->payload});
 
     # Use the @Filter bundle to handle '-remove'.
     if ($args{-remove}) {
@@ -86,12 +87,19 @@ sub configure {
     }
 
     # Add appropriate version plugin
-    if ($args{version} eq 'auto') {
+    if (lc($args{version}) eq 'auto') {
         $self->add_plugins(
             [ 'AutoVersion' => { major => $args{version_major} } ]
         );
     }
+    elsif (lc($args{version}) eq 'disable') {
+        # No-op
+        $self->add_plugins(
+            [ 'StaticVersion' => { version => '' } ]
+        );
+    }
     else {
+        # If version is empty, this is a no-op.
         $self->add_plugins(
             [ 'StaticVersion' => { version => $args{version} } ]
         );
@@ -100,9 +108,7 @@ sub configure {
 
     # Copy files from build dir
     $self->add_plugins(
-        [ 'CopyFilesFromBuild' => {
-            file => $args{copy_file}
-        }]
+        [ 'CopyFilesFromBuild' => { file => $args{copy_file} } ]
     );
 
     # Decide whether to test SYNOPSIS for syntax.
