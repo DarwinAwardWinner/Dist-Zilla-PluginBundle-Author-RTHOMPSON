@@ -4,17 +4,18 @@ Dist::Zilla::PluginBundle::RCT - RCT's Dist::Zilla Configuration
 
 # VERSION
 
-version 0.103420
+version 0.103440
 
 # SYNOPSIS
 
 In dist.ini:
 
     [@RCT]
+    TODO ADD STUFF
 
 # DESCRIPTION
 
-See the code. It lists all the plugins that it loads quite clearly.
+TODO ADD STUFF
 
 # BUGS AND LIMITATIONS
 
