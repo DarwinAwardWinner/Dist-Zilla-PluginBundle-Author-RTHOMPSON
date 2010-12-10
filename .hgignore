@@ -1,6 +1,6 @@
 syntax:glob
 
 .build/
-Dist-Zilla-PluginBundle-RCT-*
+Dist-Zilla-PluginBundle-RTHOMPSON-*
 .build-timestamp
 Changes

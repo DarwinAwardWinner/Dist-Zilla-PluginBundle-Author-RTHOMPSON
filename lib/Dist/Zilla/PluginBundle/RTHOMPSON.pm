@@ -3,15 +3,15 @@ use warnings;
 use v5.10;
 use utf8;
 
-package Dist::Zilla::PluginBundle::RCT;
-# ABSTRACT: RCT's Dist::Zilla Configuration
+package Dist::Zilla::PluginBundle::RTHOMPSON;
+# ABSTRACT: RTHOMPSON's Dist::Zilla Configuration
 
 use Moose;
 with 'Dist::Zilla::Role::PluginBundle::Easy';
 
 my $sample_dist_ini = <<'EOF';
 fdfsd
-[@RCT]
+[@RTHOMPSON]
 ; Support remove like @Filter
 -remove = SynopsisTests
 -remove = JRandomPlugin
@@ -82,7 +82,7 @@ sub configure {
 
     # Use the @Filter bundle to handle '-remove'.
     if ($args{-remove}) {
-        $self->add_bundle('@Filter' => { %args, -bundle => '@RCT' });
+        $self->add_bundle('@Filter' => { %args, -bundle => '@RTHOMPSON' });
         return;
     }
 
@@ -104,7 +104,6 @@ sub configure {
             [ 'StaticVersion' => { version => $args{version} } ]
         );
     }
-    # TODO support other version providers
 
     # Copy files from build dir
     $self->add_plugins(
@@ -210,7 +209,7 @@ __END__
 
 In dist.ini:
 
-    [@RCT]
+    [@RTHOMPSON]
     TODO ADD STUFF
 
 =head1 DESCRIPTION

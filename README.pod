@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Dist::Zilla::PluginBundle::RCT - RCT's Dist::Zilla Configuration
+Dist::Zilla::PluginBundle::RTHOMPSON - RTHOMPSON's Dist::Zilla Configuration
 
 =head1 VERSION
 
@@ -12,7 +12,7 @@ version 0.103440
 
 In dist.ini:
 
-    [@RCT]
+    [@RTHOMPSON]
     TODO ADD STUFF
 
 =head1 DESCRIPTION
