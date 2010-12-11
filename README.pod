@@ -6,18 +6,175 @@ Dist::Zilla::PluginBundle::RTHOMPSON - RTHOMPSON's Dist::Zilla Configuration
 
 =head1 VERSION
 
-version 0.103440
+version 0.103450
 
 =head1 SYNOPSIS
 
 In dist.ini:
 
     [@RTHOMPSON]
-    TODO ADD STUFF
 
 =head1 DESCRIPTION
 
-TODO ADD STUFF
+This plugin bundle, in its default configuration, is equivalent to:
+
+    [AutoVersion]
+    major = 0
+    [GatherDir]
+    [PruneCruft]
+    [ManifestSkip]
+    [MetaYAML]
+    [License]
+    [ExecDir]
+    [ShareDir]
+    [MakeMaker]
+    [Manifest]
+    [PkgVersion]
+    [PodWeaver]
+    [InstallGuide]
+    [ReadmeAnyFromPod / text ]
+    filename = README
+    type => text
+    [ReadmeAnyFromPod / pod ]
+    filename = README.pod
+    type => pod
+    [GithubMeta]
+    [CriticTests]
+    [PodTests]
+    [HasVersionTests]
+    [PortabilityTests]
+    [UnusedVarsTests]
+    [CompileTests]
+    skip = Test$
+    [SynopsisTests]
+    [KwaliteeTests]
+    [ExtraTests]
+    [ReportVersions]
+    [MinimumPerl]
+    [AutoPrereqs]
+    [CheckChangesHasContent]
+    [NextRelease]
+    [TestRelease]
+    [ConfirmRelease]
+    [CopyFilesFromBuild]
+    move_file = README.pod
+    [UploadToCPAN]
+    [ArchiveRelease]
+    directory = releases
+
+There are several options that can change the default configuation,
+though.
+
+=head1 OPTIONS
+
+The following options can be specified after the C<[@RTHOMPSON]> line
+in your F<dist.ini>, and change the default behavior of the bundle.
+
+=head2 -remove
+
+This option can be used to remove specific plugins from the bundle. It
+can be used multiple times.
+
+Obviously, the default is not to remove any plugins.
+
+Example:
+
+    ; Remove these two plugins from the bundle
+    -remove = CriticTests
+    -remove = GithubMeta
+
+=head2 C<version>, C<version_major>
+
+This option is used to specify the version of the module. The default
+is 'auto', which uses the AutoVersion plugin to choose a version
+number. You can also set the version number manually, or choose
+'disable' to prevent this bundle from supplying a version.
+
+Examples:
+
+    ; Use AutoVersion (default)
+    version = auto
+    version_major = 0
+    ; Use manual versioning
+    version = 1.14.04
+    ; Provide no version, so that another plugin can handle it.
+    version = disable
+
+=head2 C<copy_file>, C<move_file>
+
+If you want to copy or move files out of the build dir and into the
+distribution dir, use these two options to specify those files. Both
+of these options can be specified multiple times.
+
+The most common reason to use this would be to put automatically
+generated files under version control. For example, Github likes to
+see a README file in your distribution, but if your README file is
+auto-generated during the build, you need to copy each newly-generated
+README file out of its build directory in order for Github to see it.
+
+If you want to include an auto-generated file in your distribution but
+you I<don't> want to include it in the build, use C<move_file> instead
+of C<copy_file>.
+
+The default is to move F<README.pod> out of the build dir. If you use
+C<move_file> in your configuration, this default will be disabled, so
+if you want it, make sure to include it along with your other
+C<move_file>s.
+
+Example:
+
+    copy_file = README
+    move_file = README.pod
+    copy_file = README.txt
+
+=head2 C<synopsis_is_perl_code>
+
+If this is set to true (the default), then the SynopsisTests plugin
+will be enabled. This plugin checks the perl syntax of the SYNOPSIS
+sections of your modules. Obviously, if your SYNOPSIS section is not
+perl code (case in point: this module), you should set this to false.
+
+Example:
+
+    synopsis_is_perl_code = false
+
+=head2 C<release>
+
+This option chooses the type of release to do. The default is 'real,'
+which means "really upload the release to CPAN" (i.e. load the
+C<UploadToCPAN> plugin). You can set it to 'fake,' in which case the
+C<FakeRelease> plugin will be loaded, which simulates the release
+process without actually doing anything. You can also set it to 'none'
+if you do not want this module to load any release plugin, in which
+case your F<dist.ini> file should load a release plugin directly. Any
+other value for this option will be interpreted as a release plugin
+name to be loaded.
+
+Examples:
+
+    ; Release to CPAN for real (default)
+    release = real
+    ; For testing, you can do fake releases
+    release = fake
+    ; Or you can choose no release plugin
+    release = none
+    ; Or you can specify a specific release plugin.
+    release = OtherReleasePlugin
+
+=head2 C<archive>, C<archive_directory>
+
+If set to true, the C<archive> option copies each released version of
+the module to an archive directory, using the C<ArchiveRelease>
+plugin. This is the default. The name of the archive directory is
+specified using C<archive_directory>, which is F<releases> by default.
+
+Examples:
+
+    ; archive each release to the "releases" directory
+    archive = true
+    archive_directory = releases
+    ; Or don't archive
+    archive = false
 
 =for Pod::Coverage configure mvp_multivalue_args
 
