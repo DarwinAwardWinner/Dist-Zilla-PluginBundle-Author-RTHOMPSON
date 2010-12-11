@@ -3,4 +3,3 @@ syntax:glob
 .build/
 Dist-Zilla-PluginBundle-RTHOMPSON-*
 .build-timestamp
-Changes
