@@ -70,7 +70,7 @@ though.
 The following options can be specified after the C<[@RTHOMPSON]> line
 in your F<dist.ini>, and change the default behavior of the bundle.
 
-=head2 -remove
+=head2 C<-remove>
 
 This option can be used to remove specific plugins from the bundle. It
 can be used multiple times.
