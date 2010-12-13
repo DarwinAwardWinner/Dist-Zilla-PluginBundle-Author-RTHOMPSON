@@ -261,12 +261,7 @@ This plugin bundle, in its default configuration, is equivalent to:
 There are several options that can change the default configuation,
 though.
 
-=head1 OPTIONS
-
-The following options can be specified after the C<[@RTHOMPSON]> line
-in your F<dist.ini>, and change the default behavior of the bundle.
-
-=head2 -remove
+=option -remove
 
 This option can be used to remove specific plugins from the bundle. It
 can be used multiple times.
@@ -279,7 +274,7 @@ Example:
     -remove = CriticTests
     -remove = GithubMeta
 
-=head2 version, version_major
+=option version, version_major
 
 This option is used to specify the version of the module. The default
 is 'auto', which uses the AutoVersion plugin to choose a version
@@ -296,7 +291,7 @@ Examples:
     ; Provide no version, so that another plugin can handle it.
     version = disable
 
-=head2 copy_file, move_file
+=option copy_file, move_file
 
 If you want to copy or move files out of the build dir and into the
 distribution dir, use these two options to specify those files. Both
@@ -323,7 +318,7 @@ Example:
     move_file = README.pod
     copy_file = README.txt
 
-=head2 synopsis_is_perl_code
+=option synopsis_is_perl_code
 
 If this is set to true (the default), then the SynopsisTests plugin
 will be enabled. This plugin checks the perl syntax of the SYNOPSIS
@@ -334,7 +329,7 @@ Example:
 
     synopsis_is_perl_code = false
 
-=head2 release
+=option release
 
 This option chooses the type of release to do. The default is 'real,'
 which means "really upload the release to CPAN" (i.e. load the
@@ -357,7 +352,7 @@ Examples:
     ; Or you can specify a specific release plugin.
     release = OtherReleasePlugin
 
-=head2 archive, archive_directory
+=option archive, archive_directory
 
 If set to true, the C<archive> option copies each released version of
 the module to an archive directory, using the C<ArchiveRelease>
@@ -372,7 +367,7 @@ Examples:
     ; Or don't archive
     archive = false
 
-=head2 vcs
+=option vcs
 
 This option specifies which version control system is being used for
 the distribution. Integration for that version control system is

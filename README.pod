@@ -72,9 +72,6 @@ though.
 
 =head1 OPTIONS
 
-The following options can be specified after the C<[@RTHOMPSON]> line
-in your F<dist.ini>, and change the default behavior of the bundle.
-
 =head2 -remove
 
 This option can be used to remove specific plugins from the bundle. It
@@ -219,6 +216,10 @@ RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
 FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
 SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGES.
+
+=head1 INSTALLATION
+
+See perlmodinstall for information and options on installing Perl modules.
 
 =head1 AUTHOR
 
