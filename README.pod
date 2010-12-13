@@ -6,7 +6,7 @@ Dist::Zilla::PluginBundle::RTHOMPSON - RTHOMPSON's Dist::Zilla Configuration
 
 =head1 VERSION
 
-version 0.103450
+version 0.103470
 
 =head1 SYNOPSIS
 
@@ -34,10 +34,15 @@ This plugin bundle, in its default configuration, is equivalent to:
     [InstallGuide]
     [ReadmeAnyFromPod / text ]
     filename = README
-    type => text
+    type = text
     [ReadmeAnyFromPod / pod ]
     filename = README.pod
-    type => pod
+    type = pod
+    [Git::Check]
+    allow_dirty = dist.ini
+    allow_dirty = README.pod
+    [Git::Commit]
+    [Git::Tag]
     [GithubMeta]
     [CriticTests]
     [PodTests]
@@ -70,7 +75,7 @@ though.
 The following options can be specified after the C<[@RTHOMPSON]> line
 in your F<dist.ini>, and change the default behavior of the bundle.
 
-=head2 C<-remove>
+=head2 -remove
 
 This option can be used to remove specific plugins from the bundle. It
 can be used multiple times.
@@ -83,7 +88,7 @@ Example:
     -remove = CriticTests
     -remove = GithubMeta
 
-=head2 C<version>, C<version_major>
+=head2 version, version_major
 
 This option is used to specify the version of the module. The default
 is 'auto', which uses the AutoVersion plugin to choose a version
@@ -100,7 +105,7 @@ Examples:
     ; Provide no version, so that another plugin can handle it.
     version = disable
 
-=head2 C<copy_file>, C<move_file>
+=head2 copy_file, move_file
 
 If you want to copy or move files out of the build dir and into the
 distribution dir, use these two options to specify those files. Both
@@ -127,7 +132,7 @@ Example:
     move_file = README.pod
     copy_file = README.txt
 
-=head2 C<synopsis_is_perl_code>
+=head2 synopsis_is_perl_code
 
 If this is set to true (the default), then the SynopsisTests plugin
 will be enabled. This plugin checks the perl syntax of the SYNOPSIS
@@ -138,7 +143,7 @@ Example:
 
     synopsis_is_perl_code = false
 
-=head2 C<release>
+=head2 release
 
 This option chooses the type of release to do. The default is 'real,'
 which means "really upload the release to CPAN" (i.e. load the
@@ -161,7 +166,7 @@ Examples:
     ; Or you can specify a specific release plugin.
     release = OtherReleasePlugin
 
-=head2 C<archive>, C<archive_directory>
+=head2 archive, archive_directory
 
 If set to true, the C<archive> option copies each released version of
 the module to an archive directory, using the C<ArchiveRelease>
@@ -175,6 +180,13 @@ Examples:
     archive_directory = releases
     ; Or don't archive
     archive = false
+
+=head2 vcs
+
+This option specifies which version control system is being used for
+the distribution. Integration for that version control system is
+enabled. The default is 'git', and currently the only other option is
+'none', which does not load any version control plugins.
 
 =for Pod::Coverage configure mvp_multivalue_args
 

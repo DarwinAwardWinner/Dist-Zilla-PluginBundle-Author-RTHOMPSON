@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use v5.10;
+use feature 'switch';
 use utf8;
 
 package Dist::Zilla::PluginBundle::RTHOMPSON;
@@ -8,6 +8,7 @@ package Dist::Zilla::PluginBundle::RTHOMPSON;
 
 use Moose;
 use MooseX::Has::Sugar;
+use Carp;
 with 'Dist::Zilla::Role::PluginBundle::Easy';
 
 sub mvp_multivalue_args { qw( -remove copy_file move_file ) }
@@ -18,7 +19,7 @@ sub _parse_bool {
     $_ ||= '';
     return 1 if $_[0] =~ m{^(true|yes|1)$}xsmi;
     return if $_[0] =~ m{^(false|no|0)$}xsmi;
-    die "Invalid boolean value $_[0]. Valid values are true/false yes/no 1/0";
+    die "Invalid boolean value $_[0]. Valid values are true/yes/1 or false/no/0";
 }
 
 sub configure {
@@ -42,6 +43,8 @@ sub configure {
         # suchlike.
         copy_file => [],
         move_file => [ 'README.pod' ],
+        # version control system = git
+        vcs => 'git',
     };
     my %args = (%$defaults, %{$self->payload});
 
@@ -111,6 +114,26 @@ sub configure {
         );
     }
 
+    # Choose version control
+    given (lc $args{vcs}) {
+        when ('none') {
+            # No-op
+        }
+        when ('git') {
+            $self->add_plugins(
+                ['Git::Check' => {
+                    allow_dirty => [ 'dist.ini', 'README.pod' ],
+                } ],
+                (map { 'Git::' . $_ } qw(Commit Tag)),
+                # This can't hurt. It's a no-op if github is not involved.
+                'GithubMeta',
+            );
+        }
+        default {
+            croak "Unknown vcs: $_\nTry setting vcs = 'none' and setting it up yourself.";
+        }
+    }
+
     # All the invariant plugins
     $self->add_plugins(
         # @Basic
@@ -142,8 +165,6 @@ sub configure {
             type => 'pod',
         }],
 
-        # This can't hurt. It's a no-op if github is not involved.
-        'GithubMeta',
 
         # Tests
         'CriticTests',
@@ -172,9 +193,9 @@ sub configure {
         'NextRelease',
         'TestRelease',
         'ConfirmRelease',
-
     );
 }
+
 1; # Magic true value required at end of module
 __END__
 
@@ -204,10 +225,15 @@ This plugin bundle, in its default configuration, is equivalent to:
     [InstallGuide]
     [ReadmeAnyFromPod / text ]
     filename = README
-    type => text
+    type = text
     [ReadmeAnyFromPod / pod ]
     filename = README.pod
-    type => pod
+    type = pod
+    [Git::Check]
+    allow_dirty = dist.ini
+    allow_dirty = README.pod
+    [Git::Commit]
+    [Git::Tag]
     [GithubMeta]
     [CriticTests]
     [PodTests]
@@ -240,7 +266,7 @@ though.
 The following options can be specified after the C<[@RTHOMPSON]> line
 in your F<dist.ini>, and change the default behavior of the bundle.
 
-=head2 C<-remove>
+=head2 -remove
 
 This option can be used to remove specific plugins from the bundle. It
 can be used multiple times.
@@ -253,7 +279,7 @@ Example:
     -remove = CriticTests
     -remove = GithubMeta
 
-=head2 C<version>, C<version_major>
+=head2 version, version_major
 
 This option is used to specify the version of the module. The default
 is 'auto', which uses the AutoVersion plugin to choose a version
@@ -270,7 +296,7 @@ Examples:
     ; Provide no version, so that another plugin can handle it.
     version = disable
 
-=head2 C<copy_file>, C<move_file>
+=head2 copy_file, move_file
 
 If you want to copy or move files out of the build dir and into the
 distribution dir, use these two options to specify those files. Both
@@ -297,7 +323,7 @@ Example:
     move_file = README.pod
     copy_file = README.txt
 
-=head2 C<synopsis_is_perl_code>
+=head2 synopsis_is_perl_code
 
 If this is set to true (the default), then the SynopsisTests plugin
 will be enabled. This plugin checks the perl syntax of the SYNOPSIS
@@ -308,7 +334,7 @@ Example:
 
     synopsis_is_perl_code = false
 
-=head2 C<release>
+=head2 release
 
 This option chooses the type of release to do. The default is 'real,'
 which means "really upload the release to CPAN" (i.e. load the
@@ -331,7 +357,7 @@ Examples:
     ; Or you can specify a specific release plugin.
     release = OtherReleasePlugin
 
-=head2 C<archive>, C<archive_directory>
+=head2 archive, archive_directory
 
 If set to true, the C<archive> option copies each released version of
 the module to an archive directory, using the C<ArchiveRelease>
@@ -345,6 +371,13 @@ Examples:
     archive_directory = releases
     ; Or don't archive
     archive = false
+
+=head2 vcs
+
+This option specifies which version control system is being used for
+the distribution. Integration for that version control system is
+enabled. The default is 'git', and currently the only other option is
+'none', which does not load any version control plugins.
 
 =for Pod::Coverage  configure mvp_multivalue_args
 
