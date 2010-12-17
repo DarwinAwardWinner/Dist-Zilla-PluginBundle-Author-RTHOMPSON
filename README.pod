@@ -32,18 +32,13 @@ This plugin bundle, in its default configuration, is equivalent to:
     [PkgVersion]
     [PodWeaver]
     [InstallGuide]
-    [ReadmeAnyFromPod / text ]
+    [ReadmeAnyFromPod / text.build ]
     filename = README
     type = text
-    [ReadmeAnyFromPod / pod ]
+    [ReadmeAnyFromPod / pod.root ]
     filename = README.pod
     type = pod
-    [Git::Check]
-    allow_dirty = dist.ini
-    allow_dirty = README.pod
-    [Git::Commit]
-    [Git::Tag]
-    [GithubMeta]
+    location = root
     [CriticTests]
     [PodTests]
     [HasVersionTests]
@@ -51,7 +46,6 @@ This plugin bundle, in its default configuration, is equivalent to:
     [UnusedVarsTests]
     [CompileTests]
     skip = Test$
-    [SynopsisTests]
     [KwaliteeTests]
     [ExtraTests]
     [ReportVersions]
@@ -61,11 +55,15 @@ This plugin bundle, in its default configuration, is equivalent to:
     [NextRelease]
     [TestRelease]
     [ConfirmRelease]
-    [CopyFilesFromBuild]
-    move_file = README.pod
     [UploadToCPAN]
     [ArchiveRelease]
     directory = releases
+    [Git::Check]
+    allow_dirty = dist.ini
+    allow_dirty = README.pod
+    [Git::Commit]
+    [Git::Tag]
+    [GithubMeta]
 
 There are several options that can change the default configuation,
 though.

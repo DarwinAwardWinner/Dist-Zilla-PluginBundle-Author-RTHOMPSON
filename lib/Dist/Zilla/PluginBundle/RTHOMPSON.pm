@@ -42,7 +42,7 @@ sub configure {
         # Copy README.pod from build dir to dist dir, for Github and
         # suchlike.
         copy_file => [],
-        move_file => [ 'README.pod' ],
+        move_file => [],
         # version control system = git
         vcs => 'git',
     };
@@ -134,15 +134,16 @@ sub configure {
 
         # Generated Docs
         'InstallGuide',
-        ['ReadmeAnyFromPod', 'text', {
+        ['ReadmeAnyFromPod', 'text.build', {
             filename => 'README',
             type => 'text',
         }],
         # This one gets copied out of the build dir by default, and
         # does not become part of the dist.
-        ['ReadmeAnyFromPod', 'pod', {
+        ['ReadmeAnyFromPod', 'pod.root', {
             filename => 'README.pod',
             type => 'pod',
+            location => 'root',
         }],
 
         # Tests
@@ -224,18 +225,13 @@ This plugin bundle, in its default configuration, is equivalent to:
     [PkgVersion]
     [PodWeaver]
     [InstallGuide]
-    [ReadmeAnyFromPod / text ]
+    [ReadmeAnyFromPod / text.build ]
     filename = README
     type = text
-    [ReadmeAnyFromPod / pod ]
+    [ReadmeAnyFromPod / pod.root ]
     filename = README.pod
     type = pod
-    [Git::Check]
-    allow_dirty = dist.ini
-    allow_dirty = README.pod
-    [Git::Commit]
-    [Git::Tag]
-    [GithubMeta]
+    location = root
     [CriticTests]
     [PodTests]
     [HasVersionTests]
@@ -243,7 +239,6 @@ This plugin bundle, in its default configuration, is equivalent to:
     [UnusedVarsTests]
     [CompileTests]
     skip = Test$
-    [SynopsisTests]
     [KwaliteeTests]
     [ExtraTests]
     [ReportVersions]
@@ -253,12 +248,16 @@ This plugin bundle, in its default configuration, is equivalent to:
     [NextRelease]
     [TestRelease]
     [ConfirmRelease]
-    [CopyFilesFromBuild]
-    move_file = README.pod
     [UploadToCPAN]
     [ArchiveRelease]
     directory = releases
-
+    [Git::Check]
+    allow_dirty = dist.ini
+    allow_dirty = README.pod
+    [Git::Commit]
+    [Git::Tag]
+    [GithubMeta]
+    
 There are several options that can change the default configuation,
 though.
 
