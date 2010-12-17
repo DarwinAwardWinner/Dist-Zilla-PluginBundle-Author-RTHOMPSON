@@ -114,26 +114,6 @@ sub configure {
         );
     }
 
-    # Choose version control
-    given (lc $args{vcs}) {
-        when ('none') {
-            # No-op
-        }
-        when ('git') {
-            $self->add_plugins(
-                ['Git::Check' => {
-                    allow_dirty => [ 'dist.ini', 'README.pod' ],
-                } ],
-                (map { 'Git::' . $_ } qw(Commit Tag)),
-                # This can't hurt. It's a no-op if github is not involved.
-                'GithubMeta',
-            );
-        }
-        default {
-            croak "Unknown vcs: $_\nTry setting vcs = 'none' and setting it up yourself.";
-        }
-    }
-
     # All the invariant plugins
     $self->add_plugins(
         # @Basic
@@ -165,7 +145,6 @@ sub configure {
             type => 'pod',
         }],
 
-
         # Tests
         'CriticTests',
         'PodTests',
@@ -194,6 +173,28 @@ sub configure {
         'TestRelease',
         'ConfirmRelease',
     );
+
+    # Choose version control. This must be after 'NextRelease' so that
+    # the Changes file is updated before committing.
+    given (lc $args{vcs}) {
+        when ('none') {
+            # No-op
+        }
+        when ('git') {
+            $self->add_plugins(
+                ['Git::Check' => {
+                    allow_dirty => [ 'dist.ini', 'README.pod' ],
+                } ],
+                'Git::Commit',
+                'Git::Tag',
+                # This can't hurt. It's a no-op if github is not involved.
+                'GithubMeta',
+            );
+        }
+        default {
+            croak "Unknown vcs: $_\nTry setting vcs = 'none' and setting it up yourself.";
+        }
+    }
 }
 
 1; # Magic true value required at end of module
