@@ -1,6 +1,7 @@
 Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
+    - Allow Changes to be dirty when releasing (Git::Check)
 
 0.103521  2010-12-18 00:03:22 EST5EDT
     - Initial CPAN release

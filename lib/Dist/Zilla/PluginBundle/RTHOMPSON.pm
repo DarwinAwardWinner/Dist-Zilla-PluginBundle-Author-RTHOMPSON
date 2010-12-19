@@ -184,7 +184,7 @@ sub configure {
         when ('git') {
             $self->add_plugins(
                 ['Git::Check' => {
-                    allow_dirty => [ 'dist.ini', 'README.pod' ],
+                    allow_dirty => [ 'dist.ini', 'README.pod', 'Changes' ],
                 } ],
                 'Git::Commit',
                 'Git::Tag',
@@ -257,7 +257,7 @@ This plugin bundle, in its default configuration, is equivalent to:
     [Git::Commit]
     [Git::Tag]
     [GithubMeta]
-    
+
 There are several options that can change the default configuation,
 though.
 
