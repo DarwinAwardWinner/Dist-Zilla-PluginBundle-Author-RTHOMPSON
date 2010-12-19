@@ -1,6 +1,8 @@
 Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
+
+0.103532  2010-12-19 02:36:06 EST5EDT
     - Allow Changes to be dirty when releasing (Git::Commit)
     - Make allow_dirty a configurable option
 
