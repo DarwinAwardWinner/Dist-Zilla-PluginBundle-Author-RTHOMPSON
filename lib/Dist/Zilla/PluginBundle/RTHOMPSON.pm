@@ -169,6 +169,7 @@ sub configure {
 
         # Release checks
         'CheckChangesHasContent',
+        'CheckPrereqsIndexed',
 
         # Release
         'NextRelease',
