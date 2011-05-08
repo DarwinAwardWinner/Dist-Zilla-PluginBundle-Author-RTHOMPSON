@@ -149,7 +149,8 @@ sub configure {
 
         # Tests
         'CriticTests',
-        'PodTests',
+        'PodCoverageTests',
+        'PodSyntaxTests',
         'HasVersionTests',
         'PortabilityTests',
         'UnusedVarsTests',
@@ -237,7 +238,8 @@ This plugin bundle, in its default configuration, is equivalent to:
     type = pod
     location = root
     [CriticTests]
-    [PodTests]
+    [PodCoverageTests]
+    [PodSyntaxTests]
     [HasVersionTests]
     [PortabilityTests]
     [UnusedVarsTests]
