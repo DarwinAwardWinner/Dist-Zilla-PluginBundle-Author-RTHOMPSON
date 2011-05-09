@@ -6,7 +6,7 @@ Dist::Zilla::PluginBundle::RTHOMPSON - RTHOMPSON's Dist::Zilla Configuration
 
 =head1 VERSION
 
-version 0.110450
+version 0.111290
 
 =head1 SYNOPSIS
 
@@ -40,7 +40,8 @@ This plugin bundle, in its default configuration, is equivalent to:
     type = pod
     location = root
     [CriticTests]
-    [PodTests]
+    [PodCoverageTests]
+    [PodSyntaxTests]
     [HasVersionTests]
     [PortabilityTests]
     [UnusedVarsTests]
