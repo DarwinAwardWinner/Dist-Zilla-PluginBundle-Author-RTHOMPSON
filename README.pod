@@ -6,7 +6,7 @@ Dist::Zilla::PluginBundle::RTHOMPSON - RTHOMPSON's Dist::Zilla Configuration
 
 =head1 VERSION
 
-version 0.111290
+version 0.120030
 
 =head1 SYNOPSIS
 
@@ -39,7 +39,7 @@ This plugin bundle, in its default configuration, is equivalent to:
     filename = README.pod
     type = pod
     location = root
-    [CriticTests]
+    [Test::Perl::Critic]
     [PodCoverageTests]
     [PodSyntaxTests]
     [HasVersionTests]
@@ -85,7 +85,7 @@ Obviously, the default is not to remove any plugins.
 Example:
 
     ; Remove these two plugins from the bundle
-    -remove = CriticTests
+    -remove = Test::Perl::Critic
     -remove = GithubMeta
 
 =head2 version, version_major

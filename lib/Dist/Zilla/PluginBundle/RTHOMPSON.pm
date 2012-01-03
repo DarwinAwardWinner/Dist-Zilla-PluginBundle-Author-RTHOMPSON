@@ -148,7 +148,7 @@ sub configure {
         }],
 
         # Tests
-        'CriticTests',
+        'Test::Perl::Critic',
         'PodCoverageTests',
         'PodSyntaxTests',
         'HasVersionTests',
@@ -237,7 +237,7 @@ This plugin bundle, in its default configuration, is equivalent to:
     filename = README.pod
     type = pod
     location = root
-    [CriticTests]
+    [Test::Perl::Critic]
     [PodCoverageTests]
     [PodSyntaxTests]
     [HasVersionTests]
@@ -281,7 +281,7 @@ Obviously, the default is not to remove any plugins.
 Example:
 
     ; Remove these two plugins from the bundle
-    -remove = CriticTests
+    -remove = Test::Perl::Critic
     -remove = GithubMeta
 
 =option version, version_major
