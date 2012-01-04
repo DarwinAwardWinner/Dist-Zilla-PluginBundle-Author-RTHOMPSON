@@ -57,20 +57,16 @@ sub configure {
         return;
     }
 
-    # Add appropriate version plugin
+    # Add appropriate version plugin, if any
     if (lc($args{version}) eq 'auto') {
         $self->add_plugins(
             [ 'AutoVersion' => { major => $args{version_major} } ]
         );
     }
-    elsif (lc($args{version}) eq 'disable') {
-        # No-op
-        $self->add_plugins(
-            [ 'StaticVersion' => { version => '' } ]
-        );
+    elsif (grep { lc($args{version}) eq $_ } (qw(disable none false), q())) {
+        delete $args{version};
     }
     else {
-        # If version is empty, this is a no-op.
         $self->add_plugins(
             [ 'StaticVersion' => { version => $args{version} } ]
         );
