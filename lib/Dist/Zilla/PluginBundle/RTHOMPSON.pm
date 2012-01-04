@@ -45,7 +45,7 @@ sub configure {
         move_file => [],
         # version control system = git
         vcs => 'git',
-        push_to => 'origin',
+        git_remote => 'origin',
         allow_dirty => [ 'dist.ini', 'README.pod', 'Changes' ],
     };
     my %args = (%$defaults, %{$self->payload});
@@ -190,15 +190,27 @@ sub configure {
                 # This can't hurt. It's a no-op if github is not involved.
                 'GithubMeta',
             );
+            if ($args{git_remote}) {
+                if (! $args{no_check_remote}) {
+                    $self->add_plugins(
+                        ['Git::Remote::Check' => {
+                            remote_name => $args{git_remote},
+                        } ],
+                    );
+                }
+                if (! $args{no_push}) {
+                    $self->add_plugins(
+                        ['Git::Push' => {
+                            push_to => $args{git_remote},
+                        } ],
+                    );
+                }
+            }
+
             if ($args{no_push}) {
                 delete $args{push_to};
             }
             if ($args{push_to}) {
-                $self->add_plugins(
-                    ['Git::Push' => {
-                        push_to => $args{push_to},
-                    } ],
-                );
             }
         }
         default {
@@ -267,6 +279,8 @@ This plugin bundle, in its default configuration, is equivalent to:
     [Git::Tag]
     [Git::Push]
     push_to = origin
+    [Git::Remote::Check]
+    remote_name = origin
     [GithubMeta]
 
 There are several options that can change the default configuation,
@@ -385,14 +399,28 @@ the distribution. Integration for that version control system is
 enabled. The default is 'git', and currently the only other option is
 'none', which does not load any version control plugins.
 
-=option push_to, no_push
+=option git_remote
 
-The C<push_to> option specifies where to push the Git repo after
-making a release. The default is "origin".
+This option specifies the primary Git remote for the repository. The
+default is 'origin'. To disable all Git remote operations, set this to
+an empty string.
 
-To disable pushing after a release, either set C<no_push = 1> or set
-C<push_to> to an empty string. Note that setting c<no_push> will
-always disable pushing regardless of whether C<push_to> is set.
+=option no_check_remote
+
+By default, the Git remote specified by C<git_remote> will be checked
+before release using the C<Git::Remote::Check> plugin. If the remote
+is ahead of the local branch, the release process will be canceled.
+This option disables the check, allowing a release to happen even if
+the check would fail. This option has no effect if git_remote is set
+to an empty string.
+
+=option no_push
+
+By default, the Git repo will be pushed to the remote specified by
+C<git_remote> after every release, to ensure that the remote
+repository contains the latest release. To disable pushing after a
+release, set this option. This option has no effect if git_remote is
+set to an empty string.
 
 =option allow_dirty
 
