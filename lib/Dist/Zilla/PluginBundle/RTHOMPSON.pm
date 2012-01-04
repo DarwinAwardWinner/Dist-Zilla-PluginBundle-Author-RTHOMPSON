@@ -135,17 +135,10 @@ sub configure {
 
         # Generated Docs
         'InstallGuide',
-        ['ReadmeAnyFromPod', 'text.build', {
-            filename => 'README',
-            type => 'text',
-        }],
+        ['ReadmeAnyFromPod', 'ReadmeTextInBuild'],
         # This one gets copied out of the build dir by default, and
         # does not become part of the dist.
-        ['ReadmeAnyFromPod', 'pod.root', {
-            filename => 'README.pod',
-            type => 'pod',
-            location => 'root',
-        }],
+        ['ReadmeAnyFromPod', 'ReadmePodInRoot '],
 
         # Tests
         'Test::Perl::Critic',
@@ -230,13 +223,8 @@ This plugin bundle, in its default configuration, is equivalent to:
     [PkgVersion]
     [PodWeaver]
     [InstallGuide]
-    [ReadmeAnyFromPod / text.build ]
-    filename = README
-    type = text
-    [ReadmeAnyFromPod / pod.root ]
-    filename = README.pod
-    type = pod
-    location = root
+    [ReadmeAnyFromPod / ReadmeTextInBuild ]
+    [ReadmeAnyFromPod / ReadmePodInRoot ]
     [Test::Perl::Critic]
     [PodCoverageTests]
     [PodSyntaxTests]
