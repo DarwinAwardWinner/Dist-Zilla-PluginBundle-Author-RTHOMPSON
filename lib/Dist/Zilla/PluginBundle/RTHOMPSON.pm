@@ -45,6 +45,7 @@ sub configure {
         move_file => [],
         # version control system = git
         vcs => 'git',
+        push_to => 'origin',
         allow_dirty => [ 'dist.ini', 'README.pod', 'Changes' ],
     };
     my %args = (%$defaults, %{$self->payload});
@@ -189,6 +190,16 @@ sub configure {
                 # This can't hurt. It's a no-op if github is not involved.
                 'GithubMeta',
             );
+            if ($args{no_push}) {
+                delete $args{push_to};
+            }
+            if ($args{push_to}) {
+                $self->add_plugins(
+                    ['Git::Push' => {
+                        push_to => $args{push_to},
+                    } ],
+                );
+            }
         }
         default {
             croak "Unknown vcs: $_\nTry setting vcs = 'none' and setting it up yourself.";
@@ -254,6 +265,8 @@ This plugin bundle, in its default configuration, is equivalent to:
     allow_dirty = README.pod
     allow_dirty = Changes
     [Git::Tag]
+    [Git::Push]
+    push_to = origin
     [GithubMeta]
 
 There are several options that can change the default configuation,
@@ -371,6 +384,15 @@ This option specifies which version control system is being used for
 the distribution. Integration for that version control system is
 enabled. The default is 'git', and currently the only other option is
 'none', which does not load any version control plugins.
+
+=option push_to, no_push
+
+The C<push_to> option specifies where to push the Git repo after
+making a release. The default is "origin".
+
+To disable pushing after a release, either set C<no_push = 1> or set
+C<push_to> to an empty string. Note that setting c<no_push> will
+always disable pushing regardless of whether C<push_to> is set.
 
 =option allow_dirty
 
