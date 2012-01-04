@@ -146,9 +146,9 @@ sub configure {
         'PodCoverageTests',
         'PodSyntaxTests',
         'HasVersionTests',
-        'PortabilityTests',
-        'UnusedVarsTests',
-        ['CompileTests' => {
+        'Test::Portability',
+        'Test::UnusedVars',
+        ['Test::Compile' => {
             # The test files don't seem to compile in the context of
             # this test. But it's ok, because if they really have
             # problems, they'll fail to compile when they run.
@@ -252,9 +252,9 @@ This plugin bundle, in its default configuration, is equivalent to:
     [PodCoverageTests]
     [PodSyntaxTests]
     [HasVersionTests]
-    [PortabilityTests]
-    [UnusedVarsTests]
-    [CompileTests]
+    [Test::Portability]
+    [Test::UnusedVars]
+    [Test::Compile]
     skip = Test$
     [KwaliteeTests]
     [ExtraTests]
