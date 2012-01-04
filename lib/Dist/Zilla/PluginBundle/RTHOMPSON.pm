@@ -46,6 +46,7 @@ sub configure {
         # version control system = git
         vcs => 'git',
         git_remote => 'origin',
+        git_branch => 'master',
         allow_dirty => [ 'dist.ini', 'README.pod', 'Changes' ],
     };
     my %args = (%$defaults, %{$self->payload});
@@ -191,10 +192,12 @@ sub configure {
                 'GithubMeta',
             );
             if ($args{git_remote}) {
-                if (! $args{no_check_remote}) {
+                if (! $args{no_check_remote} && $args{git_branch}) {
                     $self->add_plugins(
                         ['Git::Remote::Check' => {
                             remote_name => $args{git_remote},
+                            branch => $args{git_branch},
+                            remote_branch => $args{git_remote_branch} || $args{git_branch},
                         } ],
                     );
                 }
@@ -281,6 +284,8 @@ This plugin bundle, in its default configuration, is equivalent to:
     push_to = origin
     [Git::Remote::Check]
     remote_name = origin
+    branch = master
+    remote_branch = master
     [GithubMeta]
 
 There are several options that can change the default configuation,
@@ -405,14 +410,21 @@ This option specifies the primary Git remote for the repository. The
 default is 'origin'. To disable all Git remote operations, set this to
 an empty string.
 
+=option git_branch, git_remote_branch
+
+This option specifies the branch that is to be checked against its
+remote. The second option C<git_remote_branch> is only needed if the
+remote branch has a different name. It will default to being the same as C<git_branch>
+
 =option no_check_remote
 
-By default, the Git remote specified by C<git_remote> will be checked
-before release using the C<Git::Remote::Check> plugin. If the remote
-is ahead of the local branch, the release process will be canceled.
-This option disables the check, allowing a release to happen even if
-the check would fail. This option has no effect if git_remote is set
-to an empty string.
+By default, the Git branch C<git_branch> will be checked against the
+remote branch C<git_remote_branch> at the remote specified by
+C<git_remote> using the C<Git::Remote::Check> plugin. If the remote
+branch is ahead of the local branch, the release process will be
+aborted. This option disables the check, allowing a release to happen
+even if the check would fail. This option has no effect if either
+C<git_remote> or C<git_branch> is set to an empty string.
 
 =option no_push
 
