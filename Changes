@@ -2,6 +2,9 @@ Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
 
+0.120052  2012-01-05 11:23:24 PST8PDT
+    - Add CheckVersionIncrement
+
 0.120051  2012-01-04 23:39:50 PST8PDT
     - Prevent modules in corpus directory from being indexed.
       (TODO: make this configurable)
