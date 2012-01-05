@@ -2,6 +2,13 @@ Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
 
+0.120050  2012-01-04 16:04:45 PST8PDT
+    - Add a simple test suite that ensures a dist can be built
+      successfully with the bundle
+    - Add Git::Push and Git::Remote::Check with associated options
+    - Small bugfix in the code for choosing whether to provide a
+      version
+
 0.111290  2011-05-08 19:18:09 PST8PDT
     - Maunally specify Dist::Zilla prerequisites, since they are not automatically detected
     - Adjust for Dist::Zilla 4.200006

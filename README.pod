@@ -6,7 +6,7 @@ Dist::Zilla::PluginBundle::RTHOMPSON - RTHOMPSON's Dist::Zilla Configuration
 
 =head1 VERSION
 
-version 0.120030
+version 0.120050
 
 =head1 SYNOPSIS
 
@@ -32,20 +32,15 @@ This plugin bundle, in its default configuration, is equivalent to:
     [PkgVersion]
     [PodWeaver]
     [InstallGuide]
-    [ReadmeAnyFromPod / text.build ]
-    filename = README
-    type = text
-    [ReadmeAnyFromPod / pod.root ]
-    filename = README.pod
-    type = pod
-    location = root
+    [ReadmeAnyFromPod / ReadmeTextInBuild ]
+    [ReadmeAnyFromPod / ReadmePodInRoot ]
     [Test::Perl::Critic]
     [PodCoverageTests]
     [PodSyntaxTests]
     [HasVersionTests]
-    [PortabilityTests]
-    [UnusedVarsTests]
-    [CompileTests]
+    [Test::Portability]
+    [Test::UnusedVars]
+    [Test::Compile]
     skip = Test$
     [KwaliteeTests]
     [ExtraTests]
@@ -68,6 +63,12 @@ This plugin bundle, in its default configuration, is equivalent to:
     allow_dirty = README.pod
     allow_dirty = Changes
     [Git::Tag]
+    [Git::Push]
+    push_to = origin
+    [Git::Remote::Check]
+    remote_name = origin
+    branch = master
+    remote_branch = master
     [GithubMeta]
 
 There are several options that can change the default configuation,
@@ -187,6 +188,36 @@ This option specifies which version control system is being used for
 the distribution. Integration for that version control system is
 enabled. The default is 'git', and currently the only other option is
 'none', which does not load any version control plugins.
+
+=head2 git_remote
+
+This option specifies the primary Git remote for the repository. The
+default is 'origin'. To disable all Git remote operations, set this to
+an empty string.
+
+=head2 git_branch, git_remote_branch
+
+This option specifies the branch that is to be checked against its
+remote. The second option C<git_remote_branch> is only needed if the
+remote branch has a different name. It will default to being the same as C<git_branch>
+
+=head2 no_check_remote
+
+By default, the Git branch C<git_branch> will be checked against the
+remote branch C<git_remote_branch> at the remote specified by
+C<git_remote> using the C<Git::Remote::Check> plugin. If the remote
+branch is ahead of the local branch, the release process will be
+aborted. This option disables the check, allowing a release to happen
+even if the check would fail. This option has no effect if either
+C<git_remote> or C<git_branch> is set to an empty string.
+
+=head2 no_push
+
+By default, the Git repo will be pushed to the remote specified by
+C<git_remote> after every release, to ensure that the remote
+repository contains the latest release. To disable pushing after a
+release, set this option. This option has no effect if git_remote is
+set to an empty string.
 
 =head2 allow_dirty
 
