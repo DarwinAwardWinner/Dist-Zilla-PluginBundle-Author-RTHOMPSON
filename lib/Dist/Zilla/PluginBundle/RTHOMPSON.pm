@@ -264,6 +264,7 @@ This plugin bundle, in its default configuration, is equivalent to:
     [MinimumPerl]
     [AutoPrereqs]
     [CheckChangesHasContent]
+    [CheckPrereqsIndexed]
     [NextRelease]
     [TestRelease]
     [ConfirmRelease]
