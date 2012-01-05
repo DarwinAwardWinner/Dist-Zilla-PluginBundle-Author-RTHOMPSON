@@ -120,6 +120,7 @@ sub configure {
         'PruneCruft',
         'ManifestSkip',
         'MetaYAML',
+        [ 'MetaNoIndex' => { dir => 'corpus' } ],
         'License',
         'ExecDir',
         'ShareDir',
@@ -237,6 +238,8 @@ This plugin bundle, in its default configuration, is equivalent to:
     [PruneCruft]
     [ManifestSkip]
     [MetaYAML]
+    [MetaNoIndex]
+    dir = corpus
     [License]
     [ExecDir]
     [ShareDir]
