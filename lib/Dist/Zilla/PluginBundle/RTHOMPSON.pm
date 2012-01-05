@@ -163,6 +163,7 @@ sub configure {
         # Release checks
         'CheckChangesHasContent',
         'CheckPrereqsIndexed',
+        'CheckVersionIncrement',
 
         # Release
         'NextRelease',
@@ -265,6 +266,7 @@ This plugin bundle, in its default configuration, is equivalent to:
     [AutoPrereqs]
     [CheckChangesHasContent]
     [CheckPrereqsIndexed]
+    [CheckVersionIncrement]
     [NextRelease]
     [TestRelease]
     [ConfirmRelease]
