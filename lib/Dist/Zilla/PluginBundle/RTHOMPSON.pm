@@ -409,8 +409,9 @@ an empty string.
 =option git_branch, git_remote_branch
 
 This option specifies the branch that is to be checked against its
-remote. The second option C<git_remote_branch> is only needed if the
-remote branch has a different name. It will default to being the same as C<git_branch>
+remote. The default is 'master'. The second option,
+C<git_remote_branch>, is only needed if the remote branch has a
+different name. It will default to being the same as C<git_branch>.
 
 =option no_check_remote
 
