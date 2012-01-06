@@ -100,6 +100,8 @@ my %tzil = (
 for my $name (keys %tzil) {
     my $tzil = $tzil{$name};
     lives_ok { $tzil->build; } "$name dist builds successfully";
+    my $readme_content = $tzil->slurp_file('build/README');
+    like($readme_content, qr/\S/, "$name dist has a non-empty README file");
 }
 
 done_testing;
