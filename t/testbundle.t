@@ -104,4 +104,4 @@ for my $name (keys %tzil) {
     like($readme_content, qr/\S/, "$name dist has a non-empty README file");
 }
 
-done_testing;
+done_testing(2 * scalar keys %tzil);
