@@ -7,7 +7,6 @@ package Dist::Zilla::PluginBundle::RTHOMPSON;
 # ABSTRACT: RTHOMPSON's Dist::Zilla Configuration
 
 use Moose;
-use MooseX::Has::Sugar;
 use Carp;
 with 'Dist::Zilla::Role::PluginBundle::Easy';
 
