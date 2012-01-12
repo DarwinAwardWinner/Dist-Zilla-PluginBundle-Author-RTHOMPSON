@@ -2,6 +2,9 @@ Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
 
+0.120120  2012-01-12 00:18:24 PST8PDT
+    - Replace KwaliteeTests with Test::Kwalitee
+
 0.120052  2012-01-05 11:23:24 PST8PDT
     - Add CheckVersionIncrement
 
