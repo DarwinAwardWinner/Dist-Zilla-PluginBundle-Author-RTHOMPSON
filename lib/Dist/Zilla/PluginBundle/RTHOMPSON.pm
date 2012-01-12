@@ -151,7 +151,7 @@ sub configure {
             # problems, they'll fail to compile when they run.
             skip => 'Test$',
         }],
-        'KwaliteeTests',
+        'Test::Kwalitee',
         'ExtraTests',
 
         # Prerequisite checks
@@ -258,7 +258,7 @@ This plugin bundle, in its default configuration, is equivalent to:
     [Test::UnusedVars]
     [Test::Compile]
     skip = Test$
-    [KwaliteeTests]
+    [Test::Kwalitee]
     [ExtraTests]
     [ReportVersions]
     [MinimumPerl]
