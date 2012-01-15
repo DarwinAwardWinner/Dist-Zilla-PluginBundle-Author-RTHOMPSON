@@ -9,7 +9,7 @@ use Test::DZil;
 
 use Moose::Autobox;
 
-use Dist::Zilla::PluginBundle::RTHOMPSON;
+require Dist::Zilla::PluginBundle::Author::RTHOMPSON;
 
 my %tzil = (
     normal => Builder->from_config(
@@ -25,7 +25,7 @@ my %tzil = (
                     license  => 'Perl_5',
                     copyright_holder => 'E. Xavier Ample',
                 }, [
-                    '@RTHOMPSON', {
+                    '@Author::RTHOMPSON', {
                         release => 'fake',
                     }
                 ])
@@ -45,7 +45,7 @@ my %tzil = (
                     license  => 'Perl_5',
                     copyright_holder => 'E. Xavier Ample',
                 }, [
-                    '@RTHOMPSON', {
+                    '@Author::RTHOMPSON', {
                         release => 'fake',
                         version => '1.5',
                     }
@@ -66,7 +66,7 @@ my %tzil = (
                     license  => 'Perl_5',
                     copyright_holder => 'E. Xavier Ample',
                 }, [
-                    '@RTHOMPSON', {
+                    '@Author::RTHOMPSON', {
                         release => 'fake',
                         version => 'none',
                     }
@@ -87,7 +87,7 @@ my %tzil = (
                     license  => 'Perl_5',
                     copyright_holder => 'E. Xavier Ample',
                 }, [
-                    '@RTHOMPSON', {
+                    '@Author::RTHOMPSON', {
                         release => 'fake',
                         version => '',
                     }
