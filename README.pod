@@ -2,17 +2,17 @@
 
 =head1 NAME
 
-Dist::Zilla::PluginBundle::RTHOMPSON - RTHOMPSON's Dist::Zilla Configuration
+Dist::Zilla::PluginBundle::Author::RTHOMPSON - RTHOMPSON's Dist::Zilla Configuration
 
 =head1 VERSION
 
-version 0.120120
+version 0.120160
 
 =head1 SYNOPSIS
 
 In dist.ini:
 
-    [@RTHOMPSON]
+    [@Author::RTHOMPSON]
 
 =head1 DESCRIPTION
 
