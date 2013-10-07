@@ -6,7 +6,7 @@ Dist::Zilla::PluginBundle::Author::RTHOMPSON - RTHOMPSON's Dist::Zilla Configura
 
 =head1 VERSION
 
-version 0.120160
+version 0.132800
 
 =head1 SYNOPSIS
 
