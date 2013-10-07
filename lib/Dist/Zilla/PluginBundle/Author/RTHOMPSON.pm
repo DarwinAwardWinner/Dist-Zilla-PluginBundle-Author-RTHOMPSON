@@ -85,20 +85,20 @@ sub configure {
     }
 
     # Choose release plugin
-    given ($args{release}) {
-        when (lc eq 'real') {
+    for ($args{release}) {
+        if (lc eq 'real') {
             $self->add_plugins('UploadToCPAN')
         }
-        when (lc eq 'fake') {
+        elsif (lc eq 'fake') {
             $self->add_plugins('FakeRelease')
         }
-        when (lc eq 'none') {
+        elsif (lc eq 'none') {
             # No release plugin
         }
-        when ($_) {
+        elsif ($_) {
             $self->add_plugins("$_")
         }
-        default {
+        else {
             # Empty string is the same as 'none'
         }
     }
@@ -172,11 +172,11 @@ sub configure {
 
     # Choose version control. This must be after 'NextRelease' so that
     # the Changes file is updated before committing.
-    given (lc $args{vcs}) {
-        when ('none') {
+    for (lc $args{vcs}) {
+        if ('none') {
             # No-op
         }
-        when ('git') {
+        elsif ('git') {
             $self->add_plugins(
                 ['Git::Check' => {
                     allow_dirty => [ 'dist.ini', 'README.pod', 'Changes' ],
@@ -213,7 +213,7 @@ sub configure {
             if ($args{push_to}) {
             }
         }
-        default {
+        else {
             croak "Unknown vcs: $_\nTry setting vcs = 'none' and setting it up yourself.";
         }
     }

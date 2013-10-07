@@ -1,6 +1,7 @@
 Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
+    - Remove use of given/when
 
 0.120160  2012-01-15 18:44:05 PST8PDT
     - Rename to [@Author::RTHOMPSON]
