@@ -2,6 +2,9 @@ Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
 
+0.132801  2013-10-07 16:51:23 America/Los_Angeles
+    - Update SynopsisTests to Test::Synopsis
+
 0.132800  2013-10-07 16:43:53 America/Los_Angeles
     - Remove use of given/when
 
