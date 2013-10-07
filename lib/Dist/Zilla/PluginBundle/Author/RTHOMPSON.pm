@@ -81,7 +81,7 @@ sub configure {
 
     # Decide whether to test SYNOPSIS for syntax.
     if (_parse_bool($args{synopsis_is_perl_code})) {
-        $self->add_plugins('SynopsisTests');
+        $self->add_plugins('Test::Synopsis');
     }
 
     # Choose release plugin
