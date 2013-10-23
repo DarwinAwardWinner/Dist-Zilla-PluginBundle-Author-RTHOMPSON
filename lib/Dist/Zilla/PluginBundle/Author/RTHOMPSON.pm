@@ -72,12 +72,14 @@ sub configure {
     }
 
     # Copy files from build dir
-    $self->add_plugins(
-        [ 'CopyFilesFromBuild' => {
-            copy => ($args{copy_file} || [ '' ]),
-            move => ($args{move_file} || [ '' ])
-        } ]
-    );
+    if ($args{copy_file} or $args{move_file}) {
+        $self->add_plugins(
+            [ 'CopyFilesFromBuild' => {
+                copy => ($args{copy_file} || [ '' ]),
+                move => ($args{move_file} || [ '' ])
+            } ]
+        );
+    }
 
     # Decide whether to test SYNOPSIS for syntax.
     if (_parse_bool($args{synopsis_is_perl_code})) {
