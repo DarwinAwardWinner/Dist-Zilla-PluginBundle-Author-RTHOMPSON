@@ -2,6 +2,12 @@ Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
 
+0.132960  2013-10-23 15:39:25 America/Los_Angeles
+    - Actually use the "allow_dirty" option instead of ignoring the
+      user-set value and always using the default.
+    - Fix broken vcs dispatch (broken since v0.132800)
+    - Only load CopyFilesFromBuild plugin if it is used
+
 0.132801  2013-10-07 16:51:23 America/Los_Angeles
     - Update SynopsisTests to Test::Synopsis
 
