@@ -181,10 +181,10 @@ sub configure {
         elsif (lc eq 'git') {
             $self->add_plugins(
                 ['Git::Check' => {
-                    allow_dirty => [ 'dist.ini', 'README.pod', 'Changes' ],
+                    allow_dirty => $args{allow_dirty},
                 } ],
                 [ 'Git::Commit' => {
-                    allow_dirty => [ 'dist.ini', 'README.pod', 'Changes' ],
+                    allow_dirty => $args{allow_dirty},
                 } ],
                 'Git::Tag',
                 # This can't hurt. It's a no-op if github is not involved.
