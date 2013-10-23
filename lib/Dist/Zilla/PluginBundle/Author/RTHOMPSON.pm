@@ -174,11 +174,11 @@ sub configure {
 
     # Choose version control. This must be after 'NextRelease' so that
     # the Changes file is updated before committing.
-    for (lc $args{vcs}) {
-        if ('none') {
+    for ($args{vcs}) {
+        if (lc eq 'none') {
             # No-op
         }
-        elsif ('git') {
+        elsif (lc eq 'git') {
             $self->add_plugins(
                 ['Git::Check' => {
                     allow_dirty => [ 'dist.ini', 'README.pod', 'Changes' ],
