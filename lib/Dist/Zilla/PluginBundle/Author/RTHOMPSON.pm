@@ -169,7 +169,6 @@ sub configure {
         # Release
         'NextRelease',
         'TestRelease',
-        'ConfirmRelease',
     );
 
     # Choose version control. This must be after 'NextRelease' so that
@@ -219,6 +218,13 @@ sub configure {
             croak "Unknown vcs: $_\nTry setting vcs = 'none' and setting it up yourself.";
         }
     }
+
+    # This is added last so that the user is only asked for
+    # confimation if *all* other pre-release checkpoints have been
+    # passed.
+    $self->add_plugins(
+        'ConfirmRelease',
+    );
 }
 
 1; # Magic true value required at end of module
