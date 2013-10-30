@@ -207,12 +207,6 @@ sub configure {
                     );
                 }
             }
-
-            if ($args{no_push}) {
-                delete $args{push_to};
-            }
-            if ($args{push_to}) {
-            }
         }
         else {
             croak "Unknown vcs: $_\nTry setting vcs = 'none' and setting it up yourself.";
