@@ -1,6 +1,8 @@
 Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
+
+0.133030  2013-10-30 01:53:13 America/Los_Angeles
     - Move ConfirmRelease plugin to the end. This prevents the
     frustrating case where you answer yes to confirm the release and
     then the release aborts anyway to to a subsequent pre-release
