@@ -136,7 +136,9 @@ sub configure {
         ['ReadmeAnyFromPod', 'ReadmeTextInBuild'],
         # This one gets copied out of the build dir by default, and
         # does not become part of the dist.
-        ['ReadmeAnyFromPod', 'ReadmePodInRoot '],
+        ['ReadmeAnyFromPod', 'ReadmePodInRoot ' => {
+            phase => 'release',
+        }],
 
         # Tests
         'Test::Perl::Critic',
