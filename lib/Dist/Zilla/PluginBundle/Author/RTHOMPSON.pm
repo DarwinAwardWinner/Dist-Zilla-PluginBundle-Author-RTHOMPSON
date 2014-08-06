@@ -38,8 +38,6 @@ sub configure {
         # Archive releases
         archive => 1,
         archive_directory => 'releases',
-        # Copy README.pod from build dir to dist dir, for Github and
-        # suchlike.
         copy_file => [],
         move_file => [],
         # version control system = git
@@ -71,7 +69,7 @@ sub configure {
         );
     }
 
-    # Copy files from build dir
+    # Copy/move files from build dir
     if ($args{copy_file} or $args{move_file}) {
         $self->add_plugins(
             [ 'CopyFilesFromBuild' => {
@@ -340,10 +338,7 @@ If you want to include an auto-generated file in your distribution but
 you I<don't> want to include it in the build, use C<move_file> instead
 of C<copy_file>.
 
-The default is to move F<README.pod> out of the build dir. If you use
-C<move_file> in your configuration, this default will be disabled, so
-if you want it, make sure to include it along with your other
-C<move_file>s.
+By default, both of these options are unset.
 
 Example:
 
