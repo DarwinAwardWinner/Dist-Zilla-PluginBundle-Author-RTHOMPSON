@@ -6,7 +6,7 @@ Dist::Zilla::PluginBundle::Author::RTHOMPSON - RTHOMPSON's Dist::Zilla Configura
 
 =head1 VERSION
 
-version 0.133030
+version 0.142180
 
 =head1 SYNOPSIS
 
@@ -126,10 +126,7 @@ If you want to include an auto-generated file in your distribution but
 you I<don't> want to include it in the build, use C<move_file> instead
 of C<copy_file>.
 
-The default is to move F<README.pod> out of the build dir. If you use
-C<move_file> in your configuration, this default will be disabled, so
-if you want it, make sure to include it along with your other
-C<move_file>s.
+By default, both of these options are unset.
 
 Example:
 
@@ -284,3 +281,4 @@ FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
 SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
 DAMAGES.
 
+=cut

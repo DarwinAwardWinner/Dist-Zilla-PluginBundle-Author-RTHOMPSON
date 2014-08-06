@@ -2,6 +2,11 @@ Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
 
+0.142180  2014-08-06 10:50:49PDT-0700 America/Los_Angeles
+    - Fix a few mismatches between comments/documentation and code
+    - Fix a few dependencies that were specified for the wrong phase
+    - Use the new release-only mode of ReadmeAnyFromPod
+
 0.133030  2013-10-30 01:53:13 America/Los_Angeles
     - Move ConfirmRelease plugin to the end. This prevents the
     frustrating case where you answer yes to confirm the release and
