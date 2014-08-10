@@ -148,6 +148,7 @@ my %tzil = (
                         no_check_remote => 'false',
                         no_push => 'false',
                         allow_dirty => [ qw( dist.ini Changes and README.pod ) ],
+                        'ExecDir.dir' => 'bin',
                     }
                 ])
             },

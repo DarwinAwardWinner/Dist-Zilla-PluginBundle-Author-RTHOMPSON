@@ -9,6 +9,7 @@ package Dist::Zilla::PluginBundle::Author::RTHOMPSON;
 use Moose;
 use Carp;
 with 'Dist::Zilla::Role::PluginBundle::Easy';
+with 'Dist::Zilla::Role::PluginBundle::Config::Slicer';
 with 'Dist::Zilla::Role::PluginBundle::PluginRemover';
 
 sub mvp_multivalue_args { qw( copy_file move_file allow_dirty ) }
@@ -444,6 +445,16 @@ override the default, you must include these files manually if you
 want them.
 
 This option only has an effect if C<vcs> is 'git'.
+
+=option PLUGIN-SPECIFIC OPTIONS
+
+This bundle consumes the
+C<Dist::Zilla::Role::PluginBundle::Config::Slicer> role, which means
+that you can specify any option to any plugin in the bundle directly
+by prefixing it with the plugin's name. This allows you to configure
+any options not covered by the above. For example, if you want to
+select "scripts" as the directory for the ExecDir plugin, you would
+specify the option as C<ExecDir.dir = "scripts">.
 
 =for Pod::Coverage  configure mvp_multivalue_args
 
