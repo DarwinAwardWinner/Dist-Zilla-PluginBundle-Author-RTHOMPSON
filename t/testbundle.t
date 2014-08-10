@@ -156,6 +156,8 @@ my %tzil = (
     ),
 );
 
+plan tests => 2 * keys %tzil;
+
 for my $name (keys %tzil) {
     my $tzil = $tzil{$name};
     lives_ok { $tzil->build; } "$name dist builds successfully";
@@ -163,4 +165,4 @@ for my $name (keys %tzil) {
     like($readme_content, qr/\S/, "$name dist has a non-empty README file");
 }
 
-done_testing(2 * scalar keys %tzil);
+done_testing();
