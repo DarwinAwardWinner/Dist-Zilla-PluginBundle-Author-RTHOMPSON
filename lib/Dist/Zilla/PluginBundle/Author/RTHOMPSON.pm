@@ -38,8 +38,6 @@ sub configure {
         # Archive releases
         archive => 1,
         archive_directory => 'releases',
-        copy_file => [],
-        move_file => [],
         # version control system = git
         vcs => 'git',
         git_remote => 'origin',
@@ -69,14 +67,17 @@ sub configure {
         );
     }
 
-    # Copy/move files from build dir
-    if ($args{copy_file} or $args{move_file}) {
-        $self->add_plugins(
-            [ 'CopyFilesFromBuild' => {
-                copy => ($args{copy_file} || [ '' ]),
-                move => ($args{move_file} || [ '' ])
-            } ]
-        );
+    # Copy/move files from build dir. The "copy_file" and "move_file"
+    # arguments get passed to CopyFilesFromBuild as "copy" and "move"
+    # respectively.
+    my %cffb_opt_hash = ();
+    for my $opt ("copy", "move") {
+        if ($args{"${opt}_file"} and @{$args{"${opt}_file"}}) {
+            $cffb_opt_hash{$opt} = $args{"${opt}_file"};
+        }
+    }
+    if (keys %cffb_opt_hash) {
+        $self->add_plugins([ 'CopyFilesFromBuild' => \%cffb_opt_hash ]);
     }
 
     # Decide whether to test SYNOPSIS for syntax.

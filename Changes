@@ -1,6 +1,9 @@
 Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
+    - Fix handling of copy_file and move_file arguments when they are
+      empty. This eliminates an error on some configurations but
+      otherwise has no visible effect.
 
 0.142180  2014-08-06 10:50:49PDT-0700 America/Los_Angeles
     - Fix a few mismatches between comments/documentation and code
