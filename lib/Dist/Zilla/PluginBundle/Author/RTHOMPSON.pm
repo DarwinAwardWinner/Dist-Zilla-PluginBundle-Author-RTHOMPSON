@@ -253,6 +253,7 @@ This plugin bundle, in its default configuration, is equivalent to:
     [InstallGuide]
     [ReadmeAnyFromPod / ReadmeTextInBuild ]
     [ReadmeAnyFromPod / ReadmePodInRoot ]
+    phase = release
     [Test::Perl::Critic]
     [PodCoverageTests]
     [PodSyntaxTests]
