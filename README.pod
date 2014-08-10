@@ -6,7 +6,7 @@ Dist::Zilla::PluginBundle::Author::RTHOMPSON - RTHOMPSON's Dist::Zilla Configura
 
 =head1 VERSION
 
-version 0.142220
+version 0.142221
 
 =head1 SYNOPSIS
 
@@ -36,6 +36,7 @@ This plugin bundle, in its default configuration, is equivalent to:
     [InstallGuide]
     [ReadmeAnyFromPod / ReadmeTextInBuild ]
     [ReadmeAnyFromPod / ReadmePodInRoot ]
+    phase = release
     [Test::Perl::Critic]
     [PodCoverageTests]
     [PodSyntaxTests]
@@ -233,6 +234,16 @@ override the default, you must include these files manually if you
 want them.
 
 This option only has an effect if C<vcs> is 'git'.
+
+=head2 PLUGIN-SPECIFIC OPTIONS
+
+This bundle consumes the
+C<Dist::Zilla::Role::PluginBundle::Config::Slicer> role, which means
+that you can specify any option to any plugin in the bundle directly
+by prefixing it with the plugin's name. This allows you to configure
+any options not covered by the above. For example, if you want to
+select "scripts" as the directory for the ExecDir plugin, you would
+specify the option as C<ExecDir.dir = "scripts">.
 
 =for Pod::Coverage configure mvp_multivalue_args
 

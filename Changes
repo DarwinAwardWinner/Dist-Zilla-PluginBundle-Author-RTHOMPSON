@@ -2,6 +2,11 @@ Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
 
+0.142221  2014-08-10 16:38:56PDT-0700 America/Los_Angeles
+    - Switch to PluginRemover for implementation of "-remove" option
+    - Add the Config::Slicer role to enable arbitrary plugin options
+    - Improved tests, including tests for the two above additions
+
 0.142220  2014-08-10 15:36:20PDT-0700 America/Los_Angeles
     - Fix handling of copy_file and move_file arguments when they are
       empty. This eliminates an error on some configurations but
