@@ -9,8 +9,9 @@ package Dist::Zilla::PluginBundle::Author::RTHOMPSON;
 use Moose;
 use Carp;
 with 'Dist::Zilla::Role::PluginBundle::Easy';
+with 'Dist::Zilla::Role::PluginBundle::PluginRemover';
 
-sub mvp_multivalue_args { qw( -remove copy_file move_file allow_dirty ) }
+sub mvp_multivalue_args { qw( copy_file move_file allow_dirty ) }
 
 # Returns true for strings of 'true', 'yes', or positive numbers,
 # false otherwise.
@@ -45,12 +46,6 @@ sub configure {
         allow_dirty => [ 'dist.ini', 'README.pod', 'Changes' ],
     };
     my %args = (%$defaults, %{$self->payload});
-
-    # Use the @Filter bundle to handle '-remove'.
-    if ($args{-remove}) {
-        $self->add_bundle('@Filter' => { %args, -bundle => '@Author::RTHOMPSON' });
-        return;
-    }
 
     # Add appropriate version plugin, if any
     if (lc($args{version}) eq 'auto') {

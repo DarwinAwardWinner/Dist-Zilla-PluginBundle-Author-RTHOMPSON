@@ -95,6 +95,27 @@ my %tzil = (
             },
         }
     ),
+    removeplugin => Builder->from_config(
+        { dist_root => 'corpus/dist/DZT' },
+        {
+            add_files => {
+                'source/dist.ini' => dist_ini({
+                    name     => 'DZT-Sample',
+                    abstract => 'Sample DZ Dist',
+                    # Need no version
+                    # version  => '0.001',
+                    author   => 'E. Xavier Ample <example@example.org>',
+                    license  => 'Perl_5',
+                    copyright_holder => 'E. Xavier Ample',
+                }, [
+                    '@Author::RTHOMPSON', {
+                        release => 'fake',
+                        '-remove' => [ 'GithubMeta', 'Git::Push' ],
+                    }
+                ])
+            },
+        }
+    ),
 );
 
 for my $name (keys %tzil) {
