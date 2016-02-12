@@ -1,6 +1,7 @@
 Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
+    - add [MetaJSON]
 
 0.142221  2014-08-10 16:38:56PDT-0700 America/Los_Angeles
     - Switch to PluginRemover for implementation of "-remove" option
