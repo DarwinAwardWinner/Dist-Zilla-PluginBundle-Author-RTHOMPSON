@@ -6,7 +6,7 @@ Dist::Zilla::PluginBundle::Author::RTHOMPSON - RTHOMPSON's Dist::Zilla Configura
 
 =head1 VERSION
 
-version 0.142221
+version 0.160500
 
 =head1 SYNOPSIS
 
@@ -24,6 +24,7 @@ This plugin bundle, in its default configuration, is equivalent to:
     [PruneCruft]
     [ManifestSkip]
     [MetaYAML]
+    [MetaJSON]
     [MetaNoIndex]
     dir = corpus
     [License]
