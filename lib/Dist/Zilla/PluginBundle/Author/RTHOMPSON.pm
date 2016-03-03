@@ -117,7 +117,6 @@ sub configure {
         'ManifestSkip',
         'MetaYAML',
         'MetaJSON',
-        [ 'MetaNoIndex' => { dir => 'corpus' } ],
         'License',
         'ExecDir',
         'ShareDir',
@@ -126,6 +125,10 @@ sub configure {
 
         # Add provides section to META.yml
         'MetaProvides::Package',
+
+        # Don't include the corpus directory, it's just for files that
+        # tests will run on
+        [ 'MetaNoIndex' => { dir => 'corpus' } ],
 
         # Mods
         'PkgVersion',
