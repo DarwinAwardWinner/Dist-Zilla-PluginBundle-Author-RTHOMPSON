@@ -1,6 +1,8 @@
 Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
+
+0.160630  2016-03-02 17:05:02-08:00 America/Los_Angeles
     - add [MetaProvides::Package]
 
 0.160500  2016-02-19 13:12:15-08:00 America/Los_Angeles

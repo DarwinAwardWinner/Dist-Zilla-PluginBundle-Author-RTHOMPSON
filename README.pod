@@ -6,7 +6,7 @@ Dist::Zilla::PluginBundle::Author::RTHOMPSON - RTHOMPSON's Dist::Zilla Configura
 
 =head1 VERSION
 
-version 0.160500
+version 0.160630
 
 =head1 SYNOPSIS
 
@@ -32,6 +32,7 @@ This plugin bundle, in its default configuration, is equivalent to:
     [ShareDir]
     [MakeMaker]
     [Manifest]
+    [MetaProvides::Package]
     [PkgVersion]
     [PodWeaver]
     [InstallGuide]
