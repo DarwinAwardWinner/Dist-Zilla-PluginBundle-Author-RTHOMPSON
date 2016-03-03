@@ -124,6 +124,9 @@ sub configure {
         'MakeMaker',
         'Manifest',
 
+        # Add provides section to META.yml
+        'MetaProvides::Package',
+
         # Mods
         'PkgVersion',
         # TODO: Only add PodWeaver if weaver.ini exists
@@ -246,6 +249,7 @@ This plugin bundle, in its default configuration, is equivalent to:
     [ShareDir]
     [MakeMaker]
     [Manifest]
+    [MetaProvides::Package]
     [PkgVersion]
     [PodWeaver]
     [InstallGuide]
