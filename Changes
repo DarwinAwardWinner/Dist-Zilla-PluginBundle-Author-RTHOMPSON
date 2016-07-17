@@ -2,6 +2,10 @@ Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
 
+0.161990  2016-07-16 23:48:32-07:00 America/Los_Angeles
+    - Fix an issue with the test corpus that prevented the tests from
+      passing on Perl 5.14.4.
+
 0.160630  2016-03-02 17:05:02-08:00 America/Los_Angeles
     - add [MetaProvides::Package]
 
