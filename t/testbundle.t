@@ -28,7 +28,7 @@ my %tzil = (
                     '@Author::RTHOMPSON', {
                         release => 'fake',
                     }
-                ])
+                ]),
             },
         }
     ),
@@ -137,7 +137,7 @@ my %tzil = (
                         'version_major' => 1,
                         '-remove' => [ 'GithubMeta', 'Git::Push' ],
                         copy_file => [ 'README' ],
-                        move_file => [ 'does_not_exist' ],
+                        move_file => [ 'move_this_file' ],
                         synopsis_is_perl_code => 'false',
                         archive => 'false',
                         archive_directory => "releases",
@@ -147,10 +147,11 @@ my %tzil = (
                         git_remote_branch => 'master',
                         no_check_remote => 'false',
                         no_push => 'false',
-                        allow_dirty => [ qw( dist.ini Changes and README.pod ) ],
+                        allow_dirty => [ qw( dist.ini Changes README.pod ) ],
                         'ExecDir.dir' => 'bin',
                     }
-                ])
+                ]),
+                'source/move_this_file' => 'This file should get moved.',
             },
         }
     ),
