@@ -2,6 +2,9 @@ Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
 
+0.163250  2016-11-19 23:34:54-08:00 America/Los_Angeles (TRIAL RELEASE)
+    - No changes in module functionality. Just minor fixes to the tests.
+
 0.161990  2016-07-16 23:48:32-07:00 America/Los_Angeles
     - Fix an issue with the test corpus that prevented the tests from
       passing on Perl 5.14.4.
